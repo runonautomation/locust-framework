@@ -1,0 +1,22 @@
+execution:
+- executor: locust
+  concurrency: 5
+  ramp-up: 10s
+  iterations: 10
+  scenario: productpage
+  slaves: 1
+- executor: locust
+  concurrency: 7
+  ramp-up: 20s
+  iterations: 10
+  scenario: productpage
+  slaves: 2
+
+scenarios:
+  productpage:
+    default-address: https://google.com
+    script: helloworld.py
+
+reporting:
+- module: final-stats
+  dump-xml: out/simulation.xml
